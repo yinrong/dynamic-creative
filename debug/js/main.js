@@ -33,7 +33,7 @@ $$.Board = class Board {
     board.paint(elements)
   }
 
-  const base_height = 200
+  const base_height = 300
   let getCanvas = (normalized_width) => {
     return {
       w: normalized_width * base_height,
@@ -48,10 +48,10 @@ $$.Board = class Board {
       { id: 'image2', type: 'Image', x: 300, y: 160, w: 80 , h: 40  },
       { id: 'text1' , type: 'Text' , x: 20 , y: 30 , w: 160, h: 200 },
       { id: 'image1', type: 'Image', x: 200, y: 30 , w: 180, h: 100 },
-      { id: 'text2' , type: 'Text' , x: 20 , y: 260, w: 360, h: 40  },
+      { id: 'text2' , type: 'Text' , x: 20 , y: 240, w: 360, h: 40  },
     ]
 
-    let INPUT_W = 1.75
+    let INPUT_W = 1.32
     let canvas = getCanvas(INPUT_W)
     drawResult(canvas, elements)
 
