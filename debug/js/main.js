@@ -14,8 +14,21 @@ $$.Board = class Board {
 
   paint(elements) {
     elements.map(item => {
-      this._ctx.fillRect(item.x, item.y, item.w, item.h)
-      this._ctx.fillText(item.id, item.x, item.y)
+      if(item.type == 'Image' && item.id == 'image1') {
+        this._ctx.beginPath();
+        this._ctx.ellipse((item.x+item.w+this._dom.width-800)/2, (item.y+item.h+this._dom.height-200)/2, item.x+item.w-100, item.y+100, 0, 0, 2 * Math.PI);
+        this._ctx.stroke();
+        this._ctx.fill()
+      } else if(item.type == 'Image' && item.id == 'image2') {
+        this._ctx.beginPath()
+        this._ctx.arc((item.x+item.w+this._dom.width-50)/2, (item.y+item.h+this._dom.height-50)/2, item.h/2, 0, Math.PI*2, false)
+        this._ctx.stroke()
+        this._ctx.fill()
+        //this._ctx.fillText(item.id, item.x, item.y)
+      } else if(item.type == 'Text') {
+        this._ctx.fillRect(item.x, item.y, item.w, item.h)
+        this._ctx.fillText(item.id, item.x, item.y)
+      }
     })
   }
 }
@@ -33,7 +46,7 @@ $$.Board = class Board {
     board.paint(elements)
   }
 
-  const base_height = 200
+  const base_height = 400
   let getCanvas = (normalized_width) => {
     return {
       w: normalized_width * base_height,
@@ -51,17 +64,14 @@ $$.Board = class Board {
       { id: 'text2' , type: 'Text' , x: 20 , y: 260, w: 360, h: 40  },
     ]
 
-    let INPUT_W = 1.75
-    let canvas = getCanvas(INPUT_W)
-    drawResult(canvas, elements)
+    let INPUT_W = 4.7
+    canvas = getCanvas(INPUT_W)
 
     let DynamicCreative = require('dynamic-creative').DynamicCreative
     let dc = new DynamicCreative(canvas)
     dc.add(elements)
-    for (let w =  0.5; w < 5; w += 0.3) {
-      canvas = getCanvas(w)
-      drawResult(canvas, dc.toParams(canvas))
-    }
+
+    drawResult(canvas, dc.toParams(canvas))
 
   } // end window.onload
 
