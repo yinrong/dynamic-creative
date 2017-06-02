@@ -14,5 +14,8 @@
   "license": "ISC",
   "devDependencies": {
     "browserify": "^14.3.0"
+  },
+  "dependencies": {
+    "justified-layout": "^2.1.0"
   }
 }
